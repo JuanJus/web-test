@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+
+{%block title%}{{nombre_usuario.capitalize()}}{%endblock%}
+
+{%block usuarios%}
+    {%for nombre in todos_nombres%}
+    <li><a class="dropdown-item" href="/usuario/{{nombre}}">{{nombre.capitalize()}}</a></li>
+    {%endfor%}
+{%endblock%}
+
+
+{%block content%}
+<h1 class="text-center">{{nombre_usuario.capitalize()}}</h1>
+
+<div class="container-fluid">
+    <div class="row row-cols-4">
+        {%for dato in db_datos%}
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{dato.fecha}}</h5>
+                    <ul>
+                        <li>{{dato.peso}} kg</li>
+                        <li>Medida cintura: {{dato.cintura}} cm</li>
+                        <li>Ratio cintura-altura: {{dato.ratio}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+    
+{%endblock%}

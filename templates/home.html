@@ -1,0 +1,42 @@
+{%extends "base.html"%}
+
+{%block title%}HOME{%endblock%}
+
+{%block usuarios%}
+    {%for nombre in todos_nombres%}
+    <li><a class="dropdown-item" href="/usuario/{{nombre}}">{{nombre.capitalize()}}</a></li>
+    {%endfor%}
+{%endblock%}
+
+{%block content%}
+<form action="/add" method="POST">
+    {{formas.nombre(class = "input", placeholder="Introduce tu nombre")}}
+    {{formas.peso(class = "input", placeholder="Introduce tu peso")}}
+    {{formas.cintura(class = "input", placeholder="Introduce tu cintura en cm")}}
+    {{formas.submit}}
+
+</form>
+<br>
+
+<div class="container-fluid">
+    <div class="row row-cols-4">
+        {%for dato in db_datos%}
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{dato.nombre}} --> {{dato.fecha}}</h5>
+                    <ul>
+                        <li>{{dato.peso}} kg</li>
+                        <li>Medida cintura: {{dato.cintura}} cm</li>
+                        <li>Ratio cintura-altura: {{dato.ratio}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+</div>
+
+    
+{%endblock%}
