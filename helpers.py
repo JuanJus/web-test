@@ -20,4 +20,4 @@ def calcular_ratio(nombre, cm_cintura):
 def obtener_todos_nombres(objeto):
     busquedas_completas = objeto.query.all()
     nombres = [busqueda_completa.nombre.lower() for busqueda_completa in busquedas_completas]
-    return nombres
+    return list(set(nombres))
